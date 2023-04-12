@@ -148,31 +148,24 @@
             "Username": "string*"
           }
         }
-      },
+      }
+    },
       "rest": {
         "config": {
             "baseUrl": "https://{tenant_id}",
             "get": {
                 "query_parameters": {
-                },
-                "pagination":{
-                    "mode":"generic",
-                    "path":[],
-                    "params":{
-                        "pageNumber":"{page_number}",
-                        "pageSize":"{page_size}"
-                    }
                 }
             },
             "authentication": "custom_post_token",
             "call_handling": "generic",
             "test_connection": {
-                "url": "/api/{api_version}/sites/{site_id}/users?pageSize=1&pageNumber=1"
+                "url": "/api/Students"
             }
         },
         "authOptions": {
           "type": "custom_post_token",
-          "authUrl": "https://{tenant_id}/api_login",
+          "authUrl": "https://{tenant_id}/api/login",
           "headerName": "asap_accesstoken",
           "httpVerb": "get",
           "postHeaders": {
@@ -190,21 +183,9 @@
             "value": "api.asapconnected.com"
           },
           {
-            "name": "user_name",
-            "type": "textbox",
-            "label": "Username",
-            "value": ""
-          },
-          {
             "name": "orgId",
             "type": "textbox",
             "label": "Organization ID",
-            "value": ""
-          },
-          {
-            "name": "password",
-            "type": "textbox",
-            "label": "Password",
             "value": ""
           },
           {
@@ -221,5 +202,5 @@
           }
         ]
       }
-    }
+    
   }
