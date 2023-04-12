@@ -1,0 +1,225 @@
+{
+    "schema": {
+      "options": {},
+      "crud_objects": {
+        "Students": {
+          "operations": {
+            "StudentsList": {
+              "method": "get",
+              "call": {
+                "path": "/api/Students"
+              },
+              "processing_options": {
+                "output_field": null
+              },
+              "query_parameters": {}
+            }
+          },
+          "parameters": {},
+          "key": "PersonID",
+          "resources": {
+            "AccountID": "string*",
+            "CreatedDate": "string*",
+            "CurrentLevelType": "string*",
+            "CurrentLevelValue": "string*",
+            "CustomerID": "string*",
+            "CustomerMedicalDemographic": {
+              "ADAType": "_:string*",
+              "Allergies": "_:string*",
+              "AlternateID": "_:string*",
+              "AnnualIncomeCd": "_:string*",
+              "AnnualIncomeCdDesc": "_:string*",
+              "CalJOBSID": "_:string*",
+              "CountryOfOrigin": "_:string*",
+              "CountryOfOriginDesc": "_:string*",
+              "CustomerMedicalDemographicID": "_:string*",
+              "DiplomaDate": "_:string*",
+              "Employer": "_:string*",
+              "EmployerAddress": "_:string*",
+              "EmployerCity": "_:string*",
+              "EmployerContactName": "_:string*",
+              "EmployerContactPhone": "_:string*",
+              "EmployerContactTitle": "_:string*",
+              "EmployerCountry": "_:string*",
+              "EmployerCountryDesc": "_:string*",
+              "EmployerIndustry": "_:string*",
+              "EmployerIndustryDesc": "_:string*",
+              "EmployerState": "_:string*",
+              "EmployerStateDesc": "_:string*",
+              "EmployerZip": "_:string*",
+              "EncryptionSettingsID": "_:string*",
+              "Ethnicity": "_:string*",
+              "EthnicityCd": "_:string*",
+              "EthnicityCdDesc": "_:string*",
+              "EthnicityDesc": "_:string*",
+              "GEDID": "_:string*",
+              "GraduationDate": "_:string*",
+              "HighestLevelEd": "_:string*",
+              "HighestLevelEdDesc": "_:string*",
+              "HireDate": "_:string*",
+              "HiSETID": "_:string*",
+              "HomeSchool": "_:string*",
+              "HomeSchoolDesc": "_:string*",
+              "HSE_Date": "_:string*",
+              "HSE_Type": "_:string*",
+              "HSE_TypeDesc": "_:string*",
+              "IncreasedWages": "_:string*",
+              "InsurancePlanNumber": "_:string*",
+              "InsuranceProvider": "_:string*",
+              "IsDiplomaEarned": "_:boolean*",
+              "IsDiplomaInternational": "_:boolean*",
+              "IsHispanic": "_:boolean*",
+              "IsHomeschooled": "_:boolean*",
+              "IsInternational": "_:boolean*",
+              "IsPBASigned": "_:boolean*",
+              "IsPBASignedDesc": "_:boolean*",
+              "LaborForceStatus": "_:string*",
+              "LaborForceStatusDesc": "_:string*",
+              "LanguageCd": "_:string*",
+              "LanguageCdDesc": "_:string*",
+              "MaritalStatus": "_:string*",
+              "MaritalStatusDesc": "_:string*",
+              "Medication": "_:string*",
+              "MedicationReason": "_:string*",
+              "NumberOfDependents": "_:string*",
+              "NumberOfKidsInK12": "_:string*",
+              "OtherMedical": "_:string*",
+              "PercentageIncreased": "_:string*",
+              "PhysicianPhone": "_:string*",
+              "PrimaryPhysician": "_:string*",
+              "SchoolName": "_:string*",
+              "SchoolYearsCompleted": "_:string*",
+              "StateID": "_:string*",
+              "StateSchoolID": "_:string*",
+              "StudentIncome": "_:string*",
+              "TASCID": "_:string*",
+              "Title": "_:string*",
+              "TOPSID": "_:string*",
+              "Wage": "_:string*",
+              "YearsOfSchoolCompleted": "_:string*"
+            },
+            "CustomerMedicalDemographicID": "string*",
+            "CustomerNo": "string*",
+            "CustomerQuestionAnswers": [
+              {
+                "AnswerEssay": "string*",
+                "AnswerID": "string*",
+                "AnswerString": "string*",
+                "CustomerID": "string*",
+                "QuestionID": "string*"
+              }
+            ],
+            "CustomerTypeCd": "string*",
+            "DismissalMethod": "string*",
+            "DLNum": "string*",
+            "HomeroomTeacher": "string*",
+            "IsParent": "boolean*",
+            "IsStudent": "boolean*",
+            "IsYouth": "boolean*",
+            "MemberStatus": "string*",
+            "OrgAccountNo": "string*",
+            "OrganizationID": "string*",
+            "Person": {
+              "Birthdate": "_:string*",
+              "CreatedDate": "_:string*",
+              "Email": "_:string*",
+              "FirstName": "_:string*",
+              "Gender": "_:string*",
+              "GradeLastUpdateDate": "_:string*",
+              "GradeLevel": "_:string*",
+              "ImageFile": "_:string*",
+              "LastName": "_:string*",
+              "ListnameStudentpickup": "_:string*",
+              "MiddleName": "_:string*",
+              "PersonTitleCd": "_:string*",
+              "PrimaryPhone": "_:string*",
+              "PrimaryPhoneType": "_:string*",
+              "Relationship": "_:string*",
+              "SecondaryPhone": "_:string*",
+              "SecondaryPhoneType": "_:string*",
+              "ShirtSize": "_:string*"
+            },
+            "PersonId": "string*",
+            "ReferredBy": "string*",
+            "RegistrationType": "string*",
+            "RenewalDueDate": "string*",
+            "RenewalRecurrence": "string*",
+            "SmsOptInType": "string*",
+            "Username": "string*"
+          }
+        }
+      },
+      "rest": {
+        "config": {
+            "baseUrl": "https://{tenant_id}",
+            "get": {
+                "query_parameters": {
+                },
+                "pagination":{
+                    "mode":"generic",
+                    "path":[],
+                    "params":{
+                        "pageNumber":"{page_number}",
+                        "pageSize":"{page_size}"
+                    }
+                }
+            },
+            "authentication": "custom_post_token",
+            "call_handling": "generic",
+            "test_connection": {
+                "url": "/api/{api_version}/sites/{site_id}/users?pageSize=1&pageNumber=1"
+            }
+        },
+        "authOptions": {
+          "type": "custom_post_token",
+          "authUrl": "https://{tenant_id}/api_login",
+          "headerName": "asap_accesstoken",
+          "httpVerb": "get",
+          "postHeaders": {
+            "Authorization": "user={user_name}&organizationId={orgId}&password={password}&apiKey={apiKey}"
+          },
+          "headerTemplate": "{token}"
+        }
+    },
+      "connection": {
+        "items": [
+          {
+            "name": "tenant_id",
+            "type": "textbox",
+            "label": "Tenent URL:",
+            "value": "api.asapconnected.com"
+          },
+          {
+            "name": "user_name",
+            "type": "textbox",
+            "label": "Username",
+            "value": ""
+          },
+          {
+            "name": "orgId",
+            "type": "textbox",
+            "label": "Organization ID",
+            "value": ""
+          },
+          {
+            "name": "password",
+            "type": "textbox",
+            "label": "Password",
+            "value": ""
+          },
+          {
+            "name": "apiKey",
+            "type": "textbox",
+            "label": "API Key",
+            "value": ""
+          },
+          {
+            "name": "page_size",
+            "type": "textbox",
+            "label": "Page Size:",
+            "value": "100"
+          }
+        ]
+      }
+    }
+  }
