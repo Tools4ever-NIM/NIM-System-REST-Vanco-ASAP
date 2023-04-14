@@ -2,6 +2,132 @@
     "schema": {
       "options": {},
       "crud_objects": {
+        "Courses": {
+          "operations": {
+            "StaffList": {
+              "method": "get",
+              "call": {
+                "path": "/api/Courses/GetCourses"
+              },
+              "processing_options": {
+                "output_field": null
+              },
+              "query_parameters": {}
+            }
+          },
+          "parameters": {},
+          "key": "CourseID",
+          "resources": {
+            "AsapIntegrationID": "string*",
+            "CourseCd": "string*",
+            "CourseGroupAssns": [
+              {
+                "CourseGroup": {
+                  "GroupName": "string*",
+                  "IsArchived": "boolean*",
+                  "ShowOnline": "_:boolean*"
+                },
+                "CourseGroupID": "string*"
+              }
+            ],
+            "CourseID": "string*",
+            "CourseImage": "string*",
+            "CourseName": "string*",
+            "CreatedDate": "date*",
+            "CreditValue": "string*",
+            "DepartmentID": "string*",
+            "DepositAmount": "string*",
+            "EventQuestions": "string*",
+            "GradeMax": "string*",
+            "GradeMin": "string*",
+            "HasPrereq": "boolean*",
+            "HideOnlineIfNoPrereq": "boolean*",
+            "Instrument": "string*",
+            "IsArchived": "boolean*",
+            "IsOnline": "boolean*",
+            "IsPrivateLesson": "boolean*",
+            "IsSecure": "boolean*",
+            "LongDescription": "string*",
+            "Materials": "string*",
+            "OrganizationID": "string*",
+            "PLFeeAmount": "string*",
+            "Prerequisites": "string*",
+            "PrimarySiteID": "string*",
+            "ProviderCourseID": "string*",
+            "ProviderID": "string*",
+            "ShortDescription": "string*"
+          }
+        },
+        "Classes": {
+          "operations": {
+            "StaffList": {
+              "method": "get",
+              "call": {
+                "path": "/api/Classes"
+              },
+              "processing_options": {
+                "output_field": null
+              },
+              "query_parameters": {
+              }
+            }
+          },
+          "parameters": {},
+          "key": "EventID",
+          "resources": {
+            "EventID": "string*",
+            "EventCd": "string*",
+            "EventName": "string*",
+            "StartDate": "date*",
+            "EndDate": "date*",
+            "StartTime": "string*",
+            "EndTime": "string*",
+            "DaysOfWeek": "string*",
+            "Location": "string*",
+            "Room": "string*",
+            "Instructor": "string*",
+            "InstructorID": "string*",
+            "CourseID": "string*",
+            "Status": "string*",
+            "Capacity": "string*",
+            "EnrollmentCount": "string*",
+            "DefaultFeeSum": "string*",
+            "AgeMin": "string*",
+            "AgeMax": "string*",
+            "AgeMinMonths": "string*",
+            "AgeMaxMonths": "string*",
+            "LongDescription": "string*",
+            "IsShowOnline": "boolean*",
+            "ClassFees": "string*",
+            "ClassEnrollments": "string*",
+            "CourseGroups": "string*"
+          }
+        },
+        "Staff": {
+          "operations": {
+            "StaffList": {
+              "method": "get",
+              "call": {
+                "path": "/api/Staff"
+              },
+              "processing_options": {
+                "output_field": null
+              },
+              "query_parameters": {}
+            }
+          },
+          "parameters": {},
+          "key": "EmployeeID",
+          "resources": {
+            "EmployeeID": "string*",
+            "DepartmentName": "string*",
+            "JobTitle": "string*",
+            "EmployeeNo": "string*",
+            "FirstName": "string*",
+            "LastName": "string*",
+            "MiddleName": "string*"
+          }
+        },
         "Students": {
           "operations": {
             "StudentsList": {
@@ -147,6 +273,48 @@
             "SmsOptInType": "string*",
             "Username": "string*"
           }
+        },
+        "TimePeriods": {
+          "operations": {
+            "TimePeriodsList": {
+              "method": "get",
+              "call": {
+                "path": "/api/TimePeriods"
+              },
+              "processing_options": {
+                "output_field": null
+              },
+              "query_parameters": {}
+            }
+          },
+          "parameters": {},
+          "key": "TimePeriodId",
+          "resources": {
+            "TimePeriodId": "string*",
+            "OrganizationID": "string*",
+            "SiteID": "string*",
+            "TimePeriodCd": "string*",
+            "StartDate": "date*",
+            "EndDate": "date*",
+            "Description": "string*",
+            "IsConfigured": "boolean*",
+            "TimePeriodIdentifier": "string*",
+            "IsArchived": "boolean*",
+            "PayPlanMonths": "string*",
+            "PayPlanStartDate": "string*",
+            "PayPlanDepositFixed": "string*",
+            "PayPlanDepositPct": "string*",
+            "PayPlanFee": "string*",
+            "NumberLesson": "string*",
+            "GlCode": "string*",
+            "FiscalYearID": "string*",
+            "IsPerAccountFee": "boolean*",
+            "IsDefaultTimeperiod": "boolean*",
+            "EnrollmentGoal": "string*",
+            "RevenueGoal": "string*",
+            "ChargeFee": "boolean*",
+            "RefTimePeriodID": "string*"
+          }
         }
       }
     },
@@ -193,12 +361,6 @@
             "type": "textbox",
             "label": "API Key",
             "value": ""
-          },
-          {
-            "name": "page_size",
-            "type": "textbox",
-            "label": "Page Size:",
-            "value": "100"
           }
         ]
       }
