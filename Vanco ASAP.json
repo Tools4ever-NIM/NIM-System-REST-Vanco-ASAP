@@ -1,368 +1,3474 @@
 {
-    "schema": {
-      "options": {},
-      "crud_objects": {
-        "Courses": {
-          "operations": {
-            "StaffList": {
-              "method": "get",
-              "call": {
-                "path": "/api/Courses/GetCourses"
-              },
-              "processing_options": {
-                "output_field": null
-              },
-              "query_parameters": {}
-            }
-          },
-          "parameters": {},
-          "key": "CourseID",
-          "resources": {
-            "AsapIntegrationID": "string*",
-            "CourseCd": "string*",
-            "CourseGroupAssns": [
-              {
-                "CourseGroup": {
-                  "GroupName": "string*",
-                  "IsArchived": "boolean*",
-                  "ShowOnline": "_:boolean*"
-                },
-                "CourseGroupID": "string*"
-              }
-            ],
-            "CourseID": "string*",
-            "CourseImage": "string*",
-            "CourseName": "string*",
-            "CreatedDate": "date*",
-            "CreditValue": "string*",
-            "DepartmentID": "string*",
-            "DepositAmount": "string*",
-            "EventQuestions": "string*",
-            "GradeMax": "string*",
-            "GradeMin": "string*",
-            "HasPrereq": "boolean*",
-            "HideOnlineIfNoPrereq": "boolean*",
-            "Instrument": "string*",
-            "IsArchived": "boolean*",
-            "IsOnline": "boolean*",
-            "IsPrivateLesson": "boolean*",
-            "IsSecure": "boolean*",
-            "LongDescription": "string*",
-            "Materials": "string*",
-            "OrganizationID": "string*",
-            "PLFeeAmount": "string*",
-            "Prerequisites": "string*",
-            "PrimarySiteID": "string*",
-            "ProviderCourseID": "string*",
-            "ProviderID": "string*",
-            "ShortDescription": "string*"
+  "schema": {
+    "options": {},
+    "crud_objects": {
+      "Courses": {
+        "operations": {
+          "CoursesList": {
+            "method": "get",
+            "call": {
+              "path": "/api/Courses/GetCourses"
+            },
+            "processing_options": {
+              "output_field": null
+            },
+            "query_parameters": {}
           }
         },
-        "Classes": {
-          "operations": {
-            "StaffList": {
-              "method": "get",
-              "call": {
-                "path": "/api/Classes"
+        "parameters": {},
+        "key": "CourseID",
+        "resources": {
+          "AsapIntegrationID": "string*",
+          "CourseCd": "string*",
+          "CourseGroupAssns": [
+            {
+              "CourseGroup": {
+                "GroupName": "string*",
+                "IsArchived": "boolean*",
+                "ShowOnline": "_:boolean*"
               },
-              "processing_options": {
-                "output_field": null
+              "CourseGroupID": "string*"
+            }
+          ],
+          "CourseID": "string*",
+          "CourseImage": "string*",
+          "CourseName": "string*",
+          "CreatedDate": "date*",
+          "CreditValue": "string*",
+          "DepartmentID": "string*",
+          "DepositAmount": "string*",
+          "EventQuestions": "string*",
+          "GradeMax": "string*",
+          "GradeMin": "string*",
+          "HasPrereq": "boolean*",
+          "HideOnlineIfNoPrereq": "boolean*",
+          "Instrument": "string*",
+          "IsArchived": "boolean*",
+          "IsOnline": "boolean*",
+          "IsPrivateLesson": "boolean*",
+          "IsSecure": "boolean*",
+          "LongDescription": "string*",
+          "Materials": "string*",
+          "OrganizationID": "string*",
+          "PLFeeAmount": "string*",
+          "Prerequisites": "string*",
+          "PrimarySiteID": "string*",
+          "ProviderCourseID": "string*",
+          "ProviderID": "string*",
+          "ShortDescription": "string*"
+        }
+      },
+      "Classes": {
+        "operations": {
+          "ClassesList": {
+            "method": "get",
+            "call": {
+              "mode": "iteration",
+              "table": "TimePeriods",
+              "iterator": "TimePeriodId",
+              "path": "/api/Classes",
+              "base": {
+                "TimePeriodId": "{iterator}"
               },
               "query_parameters": {
+                "showall": "1",
+                "dateFrom": "1/1/2000",
+                "dateTo": "12/31/2100",
+                "timePeriodId": "{iterator}"
               }
+            },
+            "processing_options": {
+              "output_field": null
             }
+          }
+        },
+        "parameters": {},
+        "key": "EventID",
+        "resources": {
+          "EventID": "string*",
+          "EventCd": "string*",
+          "EventName": "string*",
+          "StartDate": "date*",
+          "EndDate": "date*",
+          "StartTime": "string*",
+          "EndTime": "string*",
+          "DaysOfWeek": "string*",
+          "Location": "string*",
+          "Room": "string*",
+          "Instructor": "string*",
+          "InstructorID": "string*",
+          "CourseID": "string*",
+          "Status": "string*",
+          "Capacity": "string*",
+          "EnrollmentCount": "string*",
+          "DefaultFeeSum": "string*",
+          "AgeMin": "string*",
+          "AgeMax": "string*",
+          "AgeMinMonths": "string*",
+          "AgeMaxMonths": "string*",
+          "LongDescription": "string*",
+          "IsShowOnline": "boolean*",
+          "ClassFees": "string*",
+          "ClassEnrollments": "string*",
+          "CourseGroups": "string*"
+        }
+      },
+      "Enrollments": {
+        "operations": {
+          "EnrollmentsList": {
+            "method": "get",
+            "call": {
+              "mode": "iteration",
+              "table": "TimePeriods",
+              "iterator": "TimePeriodId",
+              "path": "/api/Enrollments?timePeriodId={iterator}"
+            },
+            "processing_options": {
+              "output_field": null
+            },
+            "query_parameters": {
+              "classStartDate": "1/1/2000",
+              "classEndDate": "12/31/2100",
+              "enrollmentStartDate": "1/1/2000",
+              "enrollmentEndDate": "12/31/2100"
+            }
+          }
+        },
+        "parameters": {},
+        "key": "EventEnrollmentID",
+        "resources": {
+          "CompletionDate": "datetime*",
+          "ConfirmationCd": "string*",
+          "CreatedDate": "datetime*",
+          "DropDate": "datetime*",
+          "EnrollmentDate": "datetime*",
+          "EnrollmentStatusCd": "string*",
+          "EventEnrollmentID": "string*",
+          "EventID": "string*",
+          "FinalGrade": "string*",
+          "Goal1": "string*",
+          "Goal2": "string*",
+          "IsFail": "boolean",
+          "IsPass": "boolean",
+          "ScheduledEvent": {
+            "Capacity": "_string*",
+            "CompanyID": "_string*",
+            "CourseID": "_string*",
+            "CreatedDate": "datetime*",
+            "DaysOfWeek": "_string*",
+            "DepartmentID": "_string*",
+            "EndDate": "_datetime*",
+            "EventCd": "_string*",
+            "EventID": "_string*",
+            "EventImage": "_string*",
+            "EventStatus": "_string*",
+            "EventTypeCd": "_string*",
+            "FacilityID": "_string*",
+            "IsAfterschool": "_boolean",
+            "IsArchived": "_boolean*",
+            "IsOnline": "_boolean",
+            "IsOvernight": "_boolean",
+            "IsSelfPaced": "_boolean",
+            "IsShowOnline": "_boolean",
+            "IsTBD": "_boolean",
+            "JobClassCd": "_string*",
+            "LastUpdateDate": "_datetime*",
+            "OrganizationID": "_string*",
+            "PrimaryInstructorID": "_string*",
+            "SiteID": "_string*",
+            "StartDate": "_datetime*"
           },
-          "parameters": {},
+          "StudentID": "string*"
+        }
+      },
+      "Staff": {
+        "operations": {
+          "StaffList": {
+            "method": "get",
+            "call": {
+              "path": "/api/Staff"
+            },
+            "processing_options": {
+              "output_field": null
+            },
+            "query_parameters": {}
+          }
+        },
+        "parameters": {},
+        "key": "EmployeeID",
+        "resources": {
+          "EmployeeID": "string*",
+          "DepartmentName": "string*",
+          "JobTitle": "string*",
+          "EmployeeNo": "string*",
+          "FirstName": "string*",
+          "LastName": "string*",
+          "MiddleName": "string*"
+        }
+      },
+      "Students": {
+        "operations": {
+          "StudentsList": {
+            "method": "get",
+            "call": {
+              "mode": "iteration",
+              "table": "TimePeriods",
+              "iterator": "TimePeriodId",
+              "path": "/api/Students?timePeriodId={iterator}",
+              "base": {
+                "TimePeriodId": "{iterator}"
+              },
+              "query_parameters": {
+                "previousDays": "9125"
+              }
+            },
+            "processing_options": {
+              "output_field": null
+            }
+          }
+        },
+        "parameters": {},
+        "key": "PersonId",
+        "resources": {
+          "AccountID": "string*",
+          "CreatedDate": "string*",
+          "CurrentLevelType": "string*",
+          "CurrentLevelValue": "string*",
+          "CustomerID": "string*",
+          "CustomerMedicalDemographic": {
+            "ADAType": "_:string*",
+            "Allergies": "_:string*",
+            "AlternateID": "_:string*",
+            "AnnualIncomeCd": "_:string*",
+            "AnnualIncomeCdDesc": "_:string*",
+            "CalJOBSID": "_:string*",
+            "CountryOfOrigin": "_:string*",
+            "CountryOfOriginDesc": "_:string*",
+            "CustomerMedicalDemographicID": "_:string*",
+            "DiplomaDate": "_:string*",
+            "Employer": "_:string*",
+            "EmployerAddress": "_:string*",
+            "EmployerCity": "_:string*",
+            "EmployerContactName": "_:string*",
+            "EmployerContactPhone": "_:string*",
+            "EmployerContactTitle": "_:string*",
+            "EmployerCountry": "_:string*",
+            "EmployerCountryDesc": "_:string*",
+            "EmployerIndustry": "_:string*",
+            "EmployerIndustryDesc": "_:string*",
+            "EmployerState": "_:string*",
+            "EmployerStateDesc": "_:string*",
+            "EmployerZip": "_:string*",
+            "EncryptionSettingsID": "_:string*",
+            "Ethnicity": "_:string*",
+            "EthnicityCd": "_:string*",
+            "EthnicityCdDesc": "_:string*",
+            "EthnicityDesc": "_:string*",
+            "GEDID": "_:string*",
+            "GraduationDate": "_:string*",
+            "HighestLevelEd": "_:string*",
+            "HighestLevelEdDesc": "_:string*",
+            "HireDate": "_:string*",
+            "HiSETID": "_:string*",
+            "HomeSchool": "_:string*",
+            "HomeSchoolDesc": "_:string*",
+            "HSE_Date": "_:string*",
+            "HSE_Type": "_:string*",
+            "HSE_TypeDesc": "_:string*",
+            "IncreasedWages": "_:string*",
+            "InsurancePlanNumber": "_:string*",
+            "InsuranceProvider": "_:string*",
+            "IsDiplomaEarned": "_:boolean*",
+            "IsDiplomaInternational": "_:boolean*",
+            "IsHispanic": "_:boolean*",
+            "IsHomeschooled": "_:boolean*",
+            "IsInternational": "_:boolean*",
+            "IsPBASigned": "_:boolean*",
+            "IsPBASignedDesc": "_:boolean*",
+            "LaborForceStatus": "_:string*",
+            "LaborForceStatusDesc": "_:string*",
+            "LanguageCd": "_:string*",
+            "LanguageCdDesc": "_:string*",
+            "MaritalStatus": "_:string*",
+            "MaritalStatusDesc": "_:string*",
+            "Medication": "_:string*",
+            "MedicationReason": "_:string*",
+            "NumberOfDependents": "_:string*",
+            "NumberOfKidsInK12": "_:string*",
+            "OtherMedical": "_:string*",
+            "PercentageIncreased": "_:string*",
+            "PhysicianPhone": "_:string*",
+            "PrimaryPhysician": "_:string*",
+            "SchoolName": "_:string*",
+            "SchoolYearsCompleted": "_:string*",
+            "StateID": "_:string*",
+            "StateSchoolID": "_:string*",
+            "StudentIncome": "_:string*",
+            "TASCID": "_:string*",
+            "Title": "_:string*",
+            "TOPSID": "_:string*",
+            "Wage": "_:string*",
+            "YearsOfSchoolCompleted": "_:string*"
+          },
+          "CustomerMedicalDemographicID": "string*",
+          "CustomerNo": "string*",
+          "CustomerQuestionAnswers": [
+            {
+              "AnswerEssay": "string*",
+              "AnswerID": "string*",
+              "AnswerString": "string*",
+              "CustomerID": "string*",
+              "QuestionID": "string*"
+            }
+          ],
+          "CustomerTypeCd": "string*",
+          "DismissalMethod": "string*",
+          "DLNum": "string*",
+          "HomeroomTeacher": "string*",
+          "IsParent": "boolean*",
+          "IsStudent": "boolean*",
+          "IsYouth": "boolean*",
+          "MemberStatus": "string*",
+          "OrgAccountNo": "string*",
+          "OrganizationID": "string*",
+          "Person": {
+            "Birthdate": "_:string*",
+            "CreatedDate": "_:string*",
+            "Email": "_:string*",
+            "FirstName": "_:string*",
+            "Gender": "_:string*",
+            "GradeLastUpdateDate": "_:string*",
+            "GradeLevel": "_:string*",
+            "ImageFile": "_:string*",
+            "LastName": "_:string*",
+            "ListnameStudentpickup": "_:string*",
+            "MiddleName": "_:string*",
+            "PersonTitleCd": "_:string*",
+            "PrimaryPhone": "_:string*",
+            "PrimaryPhoneType": "_:string*",
+            "Relationship": "_:string*",
+            "SecondaryPhone": "_:string*",
+            "SecondaryPhoneType": "_:string*",
+            "ShirtSize": "_:string*"
+          },
+          "PersonId": "string*",
+          "ReferredBy": "string*",
+          "RegistrationType": "string*",
+          "RenewalDueDate": "string*",
+          "RenewalRecurrence": "string*",
+          "SmsOptInType": "string*",
+          "TimePeriodId": "string*",
+          "Username": "string*"
+        }
+      },
+      "TimePeriods": {
+        "operations": {
+          "TimePeriodsList": {
+            "method": "get",
+            "call": {
+              "path": "/api/TimePeriods",
+              "query_parameters": {
+                "isactive": "true",
+                "startdate": "{timePeriodStart}",
+                "enddate": "{timePeriodEnd}"
+              }
+            },
+            "processing_options": {
+              "output_field": null
+            }
+          }
+        },
+        "parameters": {},
+        "key": "TimePeriodId",
+        "resources": {
+          "TimePeriodId": "string*",
+          "OrganizationID": "string*",
+          "SiteID": "string*",
+          "TimePeriodCd": "string*",
+          "StartDate": "date*",
+          "EndDate": "date*",
+          "Description": "string*",
+          "IsConfigured": "boolean*",
+          "TimePeriodIdentifier": "string*",
+          "IsArchived": "boolean*",
+          "PayPlanMonths": "string*",
+          "PayPlanStartDate": "string*",
+          "PayPlanDepositFixed": "string*",
+          "PayPlanDepositPct": "string*",
+          "PayPlanFee": "string*",
+          "NumberLesson": "string*",
+          "GlCode": "string*",
+          "FiscalYearID": "string*",
+          "IsPerAccountFee": "boolean*",
+          "IsDefaultTimeperiod": "boolean*",
+          "EnrollmentGoal": "string*",
+          "RevenueGoal": "string*",
+          "ChargeFee": "boolean*",
+          "RefTimePeriodID": "string*"
+        }
+      }
+    }
+  },
+  "rest": {
+    "config": {
+      "baseUrl": "https://{tenant_id}",
+      "get": {
+        "query_parameters": {}
+      },
+      "authentication": "custom_post_token",
+      "call_handling": "generic",
+      "test_connection": {
+        "url": "/api/Students"
+      }
+    },
+    "authOptions": {
+      "type": "custom_post_token",
+      "authUrl": "https://{tenant_id}/api/login",
+      "headerName": "asap_accesstoken",
+      "httpVerb": "get",
+      "postHeaders": {
+        "Authorization": "user={user_name}&organizationId={orgId}&password={password}&apiKey={apiKey}"
+      },
+      "headerTemplate": "{token}"
+    }
+  },
+  "connection": {
+    "items": [
+      {
+        "name": "tenant_id",
+        "type": "textbox",
+        "label": "Tenent URL:",
+        "value": "api.asapconnected.com"
+      },
+      {
+        "name": "orgId",
+        "type": "textbox",
+        "label": "Organization ID",
+        "value": ""
+      },
+      {
+        "name": "apiKey",
+        "type": "textbox",
+        "label": "API Key",
+        "value": ""
+      },
+      {
+        "name": "timePeriodStart",
+        "type": "textbox",
+        "label": "TimePeriod Start Date",
+        "value": "07/01/2023"
+      },
+      {
+        "name": "timePeriodEnd",
+        "type": "textbox",
+        "label": "TimePeriod End Date",
+        "value": "07/01/2025"
+      }
+    ]
+  },
+  "config_scenarios": [
+    {
+      "name": "Default",
+      "description": "",
+      "name_values": [
+        {
+          "name": "apiKey",
+          "value": null
+        },
+        {
+          "name": "collections",
+          "value": [
+            "Courses",
+            "Courses_CourseGroupAssns",
+            "Classes",
+            "Enrollments",
+            "Staff",
+            "Students",
+            "TimePeriods"
+          ]
+        },
+        {
+          "name": "orgId",
+          "value": null
+        },
+        {
+          "name": "password",
+          "value": null
+        },
+        {
+          "name": "previousDays",
+          "value": "10000"
+        },
+        {
+          "name": "proxy_address",
+          "value": null
+        },
+        {
+          "name": "proxy_password",
+          "value": null
+        },
+        {
+          "name": "proxy_use_flag",
+          "value": null
+        },
+        {
+          "name": "proxy_use_username_password_flag",
+          "value": null
+        },
+        {
+          "name": "proxy_username",
+          "value": null
+        },
+        {
+          "name": "tenant_id",
+          "value": null
+        },
+        {
+          "name": "timePeriodEnd",
+          "value": null
+        },
+        {
+          "name": "timePeriodStart",
+          "value": null
+        },
+        {
+          "name": "user_name",
+          "value": null
+        }
+      ],
+      "collections": [
+        {
+          "col_name": "Courses",
+          "fields": [
+            {
+              "field_name": "CourseID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "AsapIntegrationID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CourseCd",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CourseImage",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CourseName",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CreatedDate",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CreditValue",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "DepartmentID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "DepositAmount",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "EventQuestions",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "GradeMax",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "GradeMin",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "HasPrereq",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "HideOnlineIfNoPrereq",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Instrument",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "IsArchived",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "IsOnline",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "IsPrivateLesson",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "IsSecure",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "LongDescription",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Materials",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "OrganizationID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "PLFeeAmount",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Prerequisites",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "PrimarySiteID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "ProviderCourseID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "ProviderID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "ShortDescription",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CourseGroupAssns",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            }
+          ],
+          "key": "CourseID",
+          "display": "CourseName",
+          "name_values": [
+            {
+              "name": "properties",
+              "value": [
+                "AsapIntegrationID",
+                "CourseCd",
+                "CourseID",
+                "CourseImage",
+                "CourseName",
+                "CreatedDate",
+                "CreditValue",
+                "DepartmentID",
+                "DepositAmount",
+                "EventQuestions",
+                "GradeMax",
+                "GradeMin",
+                "HasPrereq",
+                "HideOnlineIfNoPrereq",
+                "Instrument",
+                "IsArchived",
+                "IsOnline",
+                "IsPrivateLesson",
+                "IsSecure",
+                "LongDescription",
+                "Materials",
+                "OrganizationID",
+                "PLFeeAmount",
+                "Prerequisites",
+                "PrimarySiteID",
+                "ProviderCourseID",
+                "ProviderID",
+                "ShortDescription"
+              ]
+            }
+          ],
+          "sys_nn": [],
+          "source": "data"
+        },
+        {
+          "col_name": "Classes",
+          "fields": [
+            {
+              "field_name": "EventID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "EventCd",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "EventName",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "StartDate",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "EndDate",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "StartTime",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "EndTime",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "DaysOfWeek",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Location",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Room",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Instructor",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "InstructorID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [
+                "Staff"
+              ],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CourseID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [
+                "Courses"
+              ],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Status",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Capacity",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "EnrollmentCount",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "DefaultFeeSum",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "AgeMin",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "AgeMax",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "AgeMinMonths",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "AgeMaxMonths",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "LongDescription",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "IsShowOnline",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "ClassFees",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "ClassEnrollments",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CourseGroups",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            }
+          ],
           "key": "EventID",
-          "resources": {
-            "EventID": "string*",
-            "EventCd": "string*",
-            "EventName": "string*",
-            "StartDate": "date*",
-            "EndDate": "date*",
-            "StartTime": "string*",
-            "EndTime": "string*",
-            "DaysOfWeek": "string*",
-            "Location": "string*",
-            "Room": "string*",
-            "Instructor": "string*",
-            "InstructorID": "string*",
-            "CourseID": "string*",
-            "Status": "string*",
-            "Capacity": "string*",
-            "EnrollmentCount": "string*",
-            "DefaultFeeSum": "string*",
-            "AgeMin": "string*",
-            "AgeMax": "string*",
-            "AgeMinMonths": "string*",
-            "AgeMaxMonths": "string*",
-            "LongDescription": "string*",
-            "IsShowOnline": "boolean*",
-            "ClassFees": "string*",
-            "ClassEnrollments": "string*",
-            "CourseGroups": "string*"
-          }
-        },
-        "Staff": {
-          "operations": {
-            "StaffList": {
-              "method": "get",
-              "call": {
-                "path": "/api/Staff"
-              },
-              "processing_options": {
-                "output_field": null
-              },
-              "query_parameters": {}
+          "display": "EventName",
+          "name_values": [
+            {
+              "name": "properties",
+              "value": [
+                "EventID",
+                "EventCd",
+                "EventName",
+                "StartDate",
+                "EndDate",
+                "StartTime",
+                "EndTime",
+                "DaysOfWeek",
+                "Location",
+                "Room",
+                "Instructor",
+                "InstructorID",
+                "CourseID",
+                "Status",
+                "Capacity",
+                "EnrollmentCount",
+                "DefaultFeeSum",
+                "AgeMin",
+                "AgeMax",
+                "AgeMinMonths",
+                "AgeMaxMonths",
+                "LongDescription",
+                "IsShowOnline",
+                "ClassFees",
+                "ClassEnrollments",
+                "CourseGroups"
+              ]
             }
-          },
-          "parameters": {},
+          ],
+          "sys_nn": [],
+          "source": "data"
+        },
+        {
+          "col_name": "Staff",
+          "fields": [
+            {
+              "field_name": "EmployeeID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "DepartmentName",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "JobTitle",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "EmployeeNo",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "FirstName",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "LastName",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "MiddleName",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            }
+          ],
           "key": "EmployeeID",
-          "resources": {
-            "EmployeeID": "string*",
-            "DepartmentName": "string*",
-            "JobTitle": "string*",
-            "EmployeeNo": "string*",
-            "FirstName": "string*",
-            "LastName": "string*",
-            "MiddleName": "string*"
-          }
-        },
-        "Students": {
-          "operations": {
-            "StudentsList": {
-              "method": "get",
-              "call": {
-                "path": "/api/Students"
-              },
-              "processing_options": {
-                "output_field": null
-              },
-              "query_parameters": {}
+          "display": "FirstName",
+          "name_values": [
+            {
+              "name": "properties",
+              "value": [
+                "EmployeeID",
+                "DepartmentName",
+                "JobTitle",
+                "EmployeeNo",
+                "FirstName",
+                "LastName",
+                "MiddleName"
+              ]
             }
-          },
-          "parameters": {},
-          "key": "PersonID",
-          "resources": {
-            "AccountID": "string*",
-            "CreatedDate": "string*",
-            "CurrentLevelType": "string*",
-            "CurrentLevelValue": "string*",
-            "CustomerID": "string*",
-            "CustomerMedicalDemographic": {
-              "ADAType": "_:string*",
-              "Allergies": "_:string*",
-              "AlternateID": "_:string*",
-              "AnnualIncomeCd": "_:string*",
-              "AnnualIncomeCdDesc": "_:string*",
-              "CalJOBSID": "_:string*",
-              "CountryOfOrigin": "_:string*",
-              "CountryOfOriginDesc": "_:string*",
-              "CustomerMedicalDemographicID": "_:string*",
-              "DiplomaDate": "_:string*",
-              "Employer": "_:string*",
-              "EmployerAddress": "_:string*",
-              "EmployerCity": "_:string*",
-              "EmployerContactName": "_:string*",
-              "EmployerContactPhone": "_:string*",
-              "EmployerContactTitle": "_:string*",
-              "EmployerCountry": "_:string*",
-              "EmployerCountryDesc": "_:string*",
-              "EmployerIndustry": "_:string*",
-              "EmployerIndustryDesc": "_:string*",
-              "EmployerState": "_:string*",
-              "EmployerStateDesc": "_:string*",
-              "EmployerZip": "_:string*",
-              "EncryptionSettingsID": "_:string*",
-              "Ethnicity": "_:string*",
-              "EthnicityCd": "_:string*",
-              "EthnicityCdDesc": "_:string*",
-              "EthnicityDesc": "_:string*",
-              "GEDID": "_:string*",
-              "GraduationDate": "_:string*",
-              "HighestLevelEd": "_:string*",
-              "HighestLevelEdDesc": "_:string*",
-              "HireDate": "_:string*",
-              "HiSETID": "_:string*",
-              "HomeSchool": "_:string*",
-              "HomeSchoolDesc": "_:string*",
-              "HSE_Date": "_:string*",
-              "HSE_Type": "_:string*",
-              "HSE_TypeDesc": "_:string*",
-              "IncreasedWages": "_:string*",
-              "InsurancePlanNumber": "_:string*",
-              "InsuranceProvider": "_:string*",
-              "IsDiplomaEarned": "_:boolean*",
-              "IsDiplomaInternational": "_:boolean*",
-              "IsHispanic": "_:boolean*",
-              "IsHomeschooled": "_:boolean*",
-              "IsInternational": "_:boolean*",
-              "IsPBASigned": "_:boolean*",
-              "IsPBASignedDesc": "_:boolean*",
-              "LaborForceStatus": "_:string*",
-              "LaborForceStatusDesc": "_:string*",
-              "LanguageCd": "_:string*",
-              "LanguageCdDesc": "_:string*",
-              "MaritalStatus": "_:string*",
-              "MaritalStatusDesc": "_:string*",
-              "Medication": "_:string*",
-              "MedicationReason": "_:string*",
-              "NumberOfDependents": "_:string*",
-              "NumberOfKidsInK12": "_:string*",
-              "OtherMedical": "_:string*",
-              "PercentageIncreased": "_:string*",
-              "PhysicianPhone": "_:string*",
-              "PrimaryPhysician": "_:string*",
-              "SchoolName": "_:string*",
-              "SchoolYearsCompleted": "_:string*",
-              "StateID": "_:string*",
-              "StateSchoolID": "_:string*",
-              "StudentIncome": "_:string*",
-              "TASCID": "_:string*",
-              "Title": "_:string*",
-              "TOPSID": "_:string*",
-              "Wage": "_:string*",
-              "YearsOfSchoolCompleted": "_:string*"
-            },
-            "CustomerMedicalDemographicID": "string*",
-            "CustomerNo": "string*",
-            "CustomerQuestionAnswers": [
-              {
-                "AnswerEssay": "string*",
-                "AnswerID": "string*",
-                "AnswerString": "string*",
-                "CustomerID": "string*",
-                "QuestionID": "string*"
-              }
-            ],
-            "CustomerTypeCd": "string*",
-            "DismissalMethod": "string*",
-            "DLNum": "string*",
-            "HomeroomTeacher": "string*",
-            "IsParent": "boolean*",
-            "IsStudent": "boolean*",
-            "IsYouth": "boolean*",
-            "MemberStatus": "string*",
-            "OrgAccountNo": "string*",
-            "OrganizationID": "string*",
-            "Person": {
-              "Birthdate": "_:string*",
-              "CreatedDate": "_:string*",
-              "Email": "_:string*",
-              "FirstName": "_:string*",
-              "Gender": "_:string*",
-              "GradeLastUpdateDate": "_:string*",
-              "GradeLevel": "_:string*",
-              "ImageFile": "_:string*",
-              "LastName": "_:string*",
-              "ListnameStudentpickup": "_:string*",
-              "MiddleName": "_:string*",
-              "PersonTitleCd": "_:string*",
-              "PrimaryPhone": "_:string*",
-              "PrimaryPhoneType": "_:string*",
-              "Relationship": "_:string*",
-              "SecondaryPhone": "_:string*",
-              "SecondaryPhoneType": "_:string*",
-              "ShirtSize": "_:string*"
-            },
-            "PersonId": "string*",
-            "ReferredBy": "string*",
-            "RegistrationType": "string*",
-            "RenewalDueDate": "string*",
-            "RenewalRecurrence": "string*",
-            "SmsOptInType": "string*",
-            "Username": "string*"
-          }
+          ],
+          "sys_nn": [],
+          "source": "data"
         },
-        "TimePeriods": {
-          "operations": {
-            "TimePeriodsList": {
-              "method": "get",
-              "call": {
-                "path": "/api/TimePeriods"
-              },
-              "processing_options": {
-                "output_field": null
-              },
-              "query_parameters": {}
+        {
+          "col_name": "Students",
+          "fields": [
+            {
+              "field_name": "AccountID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CreatedDate",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CurrentLevelType",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CurrentLevelValue",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_ADAType",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_Allergies",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_AlternateID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_AnnualIncomeCd",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_AnnualIncomeCdDesc",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_CalJOBSID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_CountryOfOrigin",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_CountryOfOriginDesc",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_CustomerMedicalDemographicID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_DiplomaDate",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_Employer",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_EmployerAddress",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_EmployerCity",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_EmployerContactName",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_EmployerContactPhone",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_EmployerContactTitle",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_EmployerCountry",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_EmployerCountryDesc",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_EmployerIndustry",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_EmployerIndustryDesc",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_EmployerState",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_EmployerStateDesc",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_EmployerZip",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_EncryptionSettingsID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_Ethnicity",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_EthnicityCd",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_EthnicityCdDesc",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_EthnicityDesc",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_GEDID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_GraduationDate",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_HighestLevelEd",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_HighestLevelEdDesc",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_HireDate",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_HiSETID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_HomeSchool",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_HomeSchoolDesc",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_HSE_Date",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_HSE_Type",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_HSE_TypeDesc",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_IncreasedWages",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_InsurancePlanNumber",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_InsuranceProvider",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_IsDiplomaEarned",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_IsDiplomaInternational",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_IsHispanic",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_IsHomeschooled",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_IsInternational",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_IsPBASigned",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_IsPBASignedDesc",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_LaborForceStatus",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_LaborForceStatusDesc",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_LanguageCd",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_LanguageCdDesc",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_MaritalStatus",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_MaritalStatusDesc",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_Medication",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_MedicationReason",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_NumberOfDependents",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_NumberOfKidsInK12",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_OtherMedical",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_PercentageIncreased",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_PhysicianPhone",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_PrimaryPhysician",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_SchoolName",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_SchoolYearsCompleted",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_StateID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_StateSchoolID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_StudentIncome",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_TASCID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_Title",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_TOPSID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_Wage",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographic_YearsOfSchoolCompleted",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerMedicalDemographicID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerNo",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CustomerTypeCd",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "DismissalMethod",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "DLNum",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "HomeroomTeacher",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "IsParent",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "IsStudent",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "IsYouth",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "MemberStatus",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "OrgAccountNo",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "OrganizationID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Person_Birthdate",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Person_CreatedDate",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Person_Email",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Person_FirstName",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Person_Gender",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Person_GradeLastUpdateDate",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Person_GradeLevel",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Person_ImageFile",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Person_LastName",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Person_ListnameStudentpickup",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Person_MiddleName",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Person_PersonTitleCd",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Person_PrimaryPhone",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Person_PrimaryPhoneType",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Person_Relationship",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Person_SecondaryPhone",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Person_SecondaryPhoneType",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Person_ShirtSize",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "PersonId",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "ReferredBy",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "RegistrationType",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "RenewalDueDate",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "RenewalRecurrence",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "SmsOptInType",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Username",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "TimePeriodId",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [
+                "TimePeriods"
+              ],
+              "reference": false,
+              "ref_col_fields": []
             }
-          },
-          "parameters": {},
+          ],
+          "key": "CustomerID",
+          "display": "CustomerID",
+          "name_values": [
+            {
+              "name": "properties",
+              "value": [
+                "AccountID",
+                "CreatedDate",
+                "CurrentLevelType",
+                "CurrentLevelValue",
+                "CustomerID",
+                "CustomerMedicalDemographic_ADAType",
+                "CustomerMedicalDemographic_Allergies",
+                "CustomerMedicalDemographic_AlternateID",
+                "CustomerMedicalDemographic_AnnualIncomeCd",
+                "CustomerMedicalDemographic_AnnualIncomeCdDesc",
+                "CustomerMedicalDemographic_CalJOBSID",
+                "CustomerMedicalDemographic_CountryOfOrigin",
+                "CustomerMedicalDemographic_CountryOfOriginDesc",
+                "CustomerMedicalDemographic_CustomerMedicalDemographicID",
+                "CustomerMedicalDemographic_DiplomaDate",
+                "CustomerMedicalDemographic_Employer",
+                "CustomerMedicalDemographic_EmployerAddress",
+                "CustomerMedicalDemographic_EmployerCity",
+                "CustomerMedicalDemographic_EmployerContactName",
+                "CustomerMedicalDemographic_EmployerContactPhone",
+                "CustomerMedicalDemographic_EmployerContactTitle",
+                "CustomerMedicalDemographic_EmployerCountry",
+                "CustomerMedicalDemographic_EmployerCountryDesc",
+                "CustomerMedicalDemographic_EmployerIndustry",
+                "CustomerMedicalDemographic_EmployerIndustryDesc",
+                "CustomerMedicalDemographic_EmployerState",
+                "CustomerMedicalDemographic_EmployerStateDesc",
+                "CustomerMedicalDemographic_EmployerZip",
+                "CustomerMedicalDemographic_EncryptionSettingsID",
+                "CustomerMedicalDemographic_Ethnicity",
+                "CustomerMedicalDemographic_EthnicityCd",
+                "CustomerMedicalDemographic_EthnicityCdDesc",
+                "CustomerMedicalDemographic_EthnicityDesc",
+                "CustomerMedicalDemographic_GEDID",
+                "CustomerMedicalDemographic_GraduationDate",
+                "CustomerMedicalDemographic_HighestLevelEd",
+                "CustomerMedicalDemographic_HighestLevelEdDesc",
+                "CustomerMedicalDemographic_HireDate",
+                "CustomerMedicalDemographic_HiSETID",
+                "CustomerMedicalDemographic_HomeSchool",
+                "CustomerMedicalDemographic_HomeSchoolDesc",
+                "CustomerMedicalDemographic_HSE_Date",
+                "CustomerMedicalDemographic_HSE_Type",
+                "CustomerMedicalDemographic_HSE_TypeDesc",
+                "CustomerMedicalDemographic_IncreasedWages",
+                "CustomerMedicalDemographic_InsurancePlanNumber",
+                "CustomerMedicalDemographic_InsuranceProvider",
+                "CustomerMedicalDemographic_IsDiplomaEarned",
+                "CustomerMedicalDemographic_IsDiplomaInternational",
+                "CustomerMedicalDemographic_IsHispanic",
+                "CustomerMedicalDemographic_IsHomeschooled",
+                "CustomerMedicalDemographic_IsInternational",
+                "CustomerMedicalDemographic_IsPBASigned",
+                "CustomerMedicalDemographic_IsPBASignedDesc",
+                "CustomerMedicalDemographic_LaborForceStatus",
+                "CustomerMedicalDemographic_LaborForceStatusDesc",
+                "CustomerMedicalDemographic_LanguageCd",
+                "CustomerMedicalDemographic_LanguageCdDesc",
+                "CustomerMedicalDemographic_MaritalStatus",
+                "CustomerMedicalDemographic_MaritalStatusDesc",
+                "CustomerMedicalDemographic_Medication",
+                "CustomerMedicalDemographic_MedicationReason",
+                "CustomerMedicalDemographic_NumberOfDependents",
+                "CustomerMedicalDemographic_NumberOfKidsInK12",
+                "CustomerMedicalDemographic_OtherMedical",
+                "CustomerMedicalDemographic_PercentageIncreased",
+                "CustomerMedicalDemographic_PhysicianPhone",
+                "CustomerMedicalDemographic_PrimaryPhysician",
+                "CustomerMedicalDemographic_SchoolName",
+                "CustomerMedicalDemographic_SchoolYearsCompleted",
+                "CustomerMedicalDemographic_StateID",
+                "CustomerMedicalDemographic_StateSchoolID",
+                "CustomerMedicalDemographic_StudentIncome",
+                "CustomerMedicalDemographic_TASCID",
+                "CustomerMedicalDemographic_Title",
+                "CustomerMedicalDemographic_TOPSID",
+                "CustomerMedicalDemographic_Wage",
+                "CustomerMedicalDemographic_YearsOfSchoolCompleted",
+                "CustomerMedicalDemographicID",
+                "CustomerNo",
+                "CustomerTypeCd",
+                "DismissalMethod",
+                "DLNum",
+                "HomeroomTeacher",
+                "IsParent",
+                "IsStudent",
+                "IsYouth",
+                "MemberStatus",
+                "OrgAccountNo",
+                "OrganizationID",
+                "Person_Birthdate",
+                "Person_CreatedDate",
+                "Person_Email",
+                "Person_FirstName",
+                "Person_Gender",
+                "Person_GradeLastUpdateDate",
+                "Person_GradeLevel",
+                "Person_ImageFile",
+                "Person_LastName",
+                "Person_ListnameStudentpickup",
+                "Person_MiddleName",
+                "Person_PersonTitleCd",
+                "Person_PrimaryPhone",
+                "Person_PrimaryPhoneType",
+                "Person_Relationship",
+                "Person_SecondaryPhone",
+                "Person_SecondaryPhoneType",
+                "Person_ShirtSize",
+                "PersonId",
+                "ReferredBy",
+                "RegistrationType",
+                "RenewalDueDate",
+                "RenewalRecurrence",
+                "SmsOptInType",
+                "TimePeriodId",
+                "Username"
+              ]
+            }
+          ],
+          "sys_nn": [],
+          "source": "data"
+        },
+        {
+          "col_name": "Courses_CourseGroupAssns",
+          "fields": [],
+          "key": "",
+          "display": "",
+          "name_values": [
+            {
+              "name": "properties",
+              "value": [
+                "GroupName",
+                "IsArchived",
+                "CourseGroup_ShowOnline",
+                "CourseGroupID"
+              ]
+            }
+          ],
+          "sys_nn": [],
+          "source": "data"
+        },
+        {
+          "col_name": "TimePeriods",
+          "fields": [
+            {
+              "field_name": "TimePeriodId",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "OrganizationID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "SiteID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "TimePeriodCd",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "StartDate",
+              "field_type": "date",
+              "include": true,
+              "field_format": "local",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "EndDate",
+              "field_type": "date",
+              "include": true,
+              "field_format": "local",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Description",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "IsConfigured",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "TimePeriodIdentifier",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "IsArchived",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "PayPlanMonths",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "PayPlanStartDate",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "PayPlanDepositFixed",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "PayPlanDepositPct",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "PayPlanFee",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "NumberLesson",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "GlCode",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "FiscalYearID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "IsPerAccountFee",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "IsDefaultTimeperiod",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "EnrollmentGoal",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "RevenueGoal",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "ChargeFee",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "RefTimePeriodID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            }
+          ],
           "key": "TimePeriodId",
-          "resources": {
-            "TimePeriodId": "string*",
-            "OrganizationID": "string*",
-            "SiteID": "string*",
-            "TimePeriodCd": "string*",
-            "StartDate": "date*",
-            "EndDate": "date*",
-            "Description": "string*",
-            "IsConfigured": "boolean*",
-            "TimePeriodIdentifier": "string*",
-            "IsArchived": "boolean*",
-            "PayPlanMonths": "string*",
-            "PayPlanStartDate": "string*",
-            "PayPlanDepositFixed": "string*",
-            "PayPlanDepositPct": "string*",
-            "PayPlanFee": "string*",
-            "NumberLesson": "string*",
-            "GlCode": "string*",
-            "FiscalYearID": "string*",
-            "IsPerAccountFee": "boolean*",
-            "IsDefaultTimeperiod": "boolean*",
-            "EnrollmentGoal": "string*",
-            "RevenueGoal": "string*",
-            "ChargeFee": "boolean*",
-            "RefTimePeriodID": "string*"
-          }
-        }
-      }
-    },
-      "rest": {
-        "config": {
-            "baseUrl": "https://{tenant_id}",
-            "get": {
-                "query_parameters": {
-                }
-            },
-            "authentication": "custom_post_token",
-            "call_handling": "generic",
-            "test_connection": {
-                "url": "/api/Students"
+          "display": "Description",
+          "name_values": [
+            {
+              "name": "properties",
+              "value": [
+                "TimePeriodId",
+                "OrganizationID",
+                "SiteID",
+                "TimePeriodCd",
+                "StartDate",
+                "EndDate",
+                "Description",
+                "IsConfigured",
+                "TimePeriodIdentifier",
+                "IsArchived",
+                "PayPlanMonths",
+                "PayPlanStartDate",
+                "PayPlanDepositFixed",
+                "PayPlanDepositPct",
+                "PayPlanFee",
+                "NumberLesson",
+                "GlCode",
+                "FiscalYearID",
+                "IsPerAccountFee",
+                "IsDefaultTimeperiod",
+                "EnrollmentGoal",
+                "RevenueGoal",
+                "ChargeFee",
+                "RefTimePeriodID"
+              ]
             }
+          ],
+          "sys_nn": [],
+          "source": "data"
         },
-        "authOptions": {
-          "type": "custom_post_token",
-          "authUrl": "https://{tenant_id}/api/login",
-          "headerName": "asap_accesstoken",
-          "httpVerb": "get",
-          "postHeaders": {
-            "Authorization": "user={user_name}&organizationId={orgId}&password={password}&apiKey={apiKey}"
-          },
-          "headerTemplate": "{token}"
+        {
+          "col_name": "Enrollments",
+          "fields": [
+            {
+              "field_name": "EventEnrollmentID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CompletionDate",
+              "field_type": "date",
+              "include": true,
+              "field_format": "local",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "ConfirmationCd",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CreatedDate",
+              "field_type": "date",
+              "include": true,
+              "field_format": "local",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "DropDate",
+              "field_type": "date",
+              "include": true,
+              "field_format": "local",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "EnrollmentDate",
+              "field_type": "date",
+              "include": true,
+              "field_format": "local",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "EnrollmentStatusCd",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "EventID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [
+                "Classes"
+              ],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "FinalGrade",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Goal1",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Goal2",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "Capacity",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CompanyID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "CourseID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [
+                "Courses"
+              ],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "DaysOfWeek",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "DepartmentID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "EndDate",
+              "field_type": "date",
+              "include": true,
+              "field_format": "local",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "EventCd",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "EventImage",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "EventStatus",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "EventTypeCd",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "FacilityID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "IsArchived",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "JobClassCd",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "LastUpdateDate",
+              "field_type": "date",
+              "include": true,
+              "field_format": "local",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "OrganizationID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "PrimaryInstructorID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "SiteID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "StartDate",
+              "field_type": "date",
+              "include": true,
+              "field_format": "local",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [],
+              "reference": false,
+              "ref_col_fields": []
+            },
+            {
+              "field_name": "StudentID",
+              "field_type": "string",
+              "include": true,
+              "field_format": "",
+              "field_source": "data",
+              "javascript": "",
+              "ref_col": [
+                "Students"
+              ],
+              "reference": false,
+              "ref_col_fields": []
+            }
+          ],
+          "key": "EventEnrollmentID",
+          "display": "EventEnrollmentID",
+          "name_values": [
+            {
+              "name": "properties",
+              "value": [
+                "CompletionDate",
+                "ConfirmationCd",
+                "CreatedDate",
+                "DropDate",
+                "EnrollmentDate",
+                "EnrollmentStatusCd",
+                "EventEnrollmentID",
+                "EventID",
+                "FinalGrade",
+                "Goal1",
+                "Goal2",
+                "Capacity",
+                "CompanyID",
+                "CourseID",
+                "CreatedDate",
+                "DaysOfWeek",
+                "DepartmentID",
+                "EndDate",
+                "EventCd",
+                "EventID",
+                "EventImage",
+                "EventStatus",
+                "EventTypeCd",
+                "FacilityID",
+                "IsArchived",
+                "JobClassCd",
+                "LastUpdateDate",
+                "OrganizationID",
+                "PrimaryInstructorID",
+                "SiteID",
+                "StartDate",
+                "StudentID"
+              ]
+            }
+          ],
+          "sys_nn": [
+            {
+              "field_a": "StudentID",
+              "col_a": "Students",
+              "field_b": "CourseID",
+              "col_b": "Courses"
+            },
+            {
+              "field_a": "StudentID",
+              "col_a": "Students",
+              "field_b": "EventID",
+              "col_b": "Classes"
+            },
+            {
+              "field_a": "CourseID",
+              "col_a": "Courses",
+              "field_b": "EventID",
+              "col_b": "Classes"
+            }
+          ],
+          "source": "data"
         }
-    },
-      "connection": {
-        "items": [
-          {
-            "name": "tenant_id",
-            "type": "textbox",
-            "label": "Tenent URL:",
-            "value": "api.asapconnected.com"
-          },
-          {
-            "name": "orgId",
-            "type": "textbox",
-            "label": "Organization ID",
-            "value": ""
-          },
-          {
-            "name": "apiKey",
-            "type": "textbox",
-            "label": "API Key",
-            "value": ""
-          }
-        ]
-      }
-    
-  }
+      ]
+    }
+  ]
+}
