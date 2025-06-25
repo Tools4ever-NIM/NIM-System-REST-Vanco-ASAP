@@ -1,6 +1,5 @@
 {
   "schema": {
-    "options": {},
     "crud_objects": {
       "Courses": {
         "operations": {
@@ -425,9 +424,13 @@
       "type": "custom_post_token",
       "authUrl": "https://{tenant_id}/api/login",
       "headerName": "asap_accesstoken",
-      "httpVerb": "get",
-      "postHeaders": {
-        "Authorization": "user={user_name}&organizationId={orgId}&password={password}&apiKey={apiKey}"
+      "httpVerb": "post",
+      "postData": {
+          "apiKey": "{apiKey}",
+          "user": "{user_name}",
+          "organizationId": "{orgId}",
+          "password": "{password}"
+
       },
       "headerTemplate": "{token}"
     }
